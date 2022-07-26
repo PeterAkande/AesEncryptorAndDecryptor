@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:aes_crypt/aes_crypt.dart';
+import 'package:encryptor/encryptor.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'dart:io';
 import 'package:path/path.dart' as p;
@@ -15,10 +19,9 @@ class FileProperties {
 class StringProperties {
   final String content;
   final String password;
-  final String appDir; //This is the application private storage
 
   StringProperties(
-      {required this.password, required this.content, required this.appDir});
+      {required this.password, required this.content});
 }
 
 Future encryptFile(FileProperties fileProperties) async {
@@ -46,6 +49,8 @@ Future decryptFile(FileProperties fileProperties) async {
   This function would be in sole charge of decrypting the file.
   It would be done in an isolate
    */
+
+
   AesCrypt crypt = AesCrypt(fileProperties.password);
   crypt.setOverwriteMode(
       AesCryptOwMode.on); // If same file exists, overwrite the file
@@ -56,7 +61,7 @@ Future decryptFile(FileProperties fileProperties) async {
   try {
     await crypt.decryptFile(fileProperties.filePath, fileDestinationPath);
   } catch (e) {
-    return Future.error('An error occurred');
+    return Future.error('An error occurred $e');
   }
 
   return File(fileDestinationPath);
@@ -67,49 +72,30 @@ Future encryptString(StringProperties stringProperties) async {
   This function would be in charge of encrypting the string
    */
 
-  AesCrypt crypt = AesCrypt(stringProperties.password);
-  crypt.setOverwriteMode(
-      AesCryptOwMode.on); // If same file exists, overwrite the file
-  String destFilePath = p.join(stringProperties.appDir, 'encryptedFile.txt');
-
-  String encryptedFilePath;
 
   try {
-    encryptedFilePath =
-        crypt.encryptTextToFileSync(stringProperties.content, destFilePath);
+    var encrypted =
+        Encryptor.encrypt(stringProperties.password, stringProperties.content);
+    return encrypted;
   } catch (e) {
-    return Future.error('An error occurred');
+    return Future.error(e);
   }
 
-  String content = File(encryptedFilePath).readAsStringSync();
-  File(encryptedFilePath).deleteSync(); //Delete the text file
-
-  return content;
 }
 
 Future decryptString(StringProperties stringProperties) async {
   /*
   The sole aim of this function is to decrypt a string file
    */
-  AesCrypt crypt = AesCrypt(stringProperties.password);
-  crypt.setOverwriteMode(
-      AesCryptOwMode.on); // If same file exists, overwrite the file
-  String encryptedFilePath =
-      p.join(stringProperties.appDir, 'encryptedFile.txt');
 
-  await File(encryptedFilePath)
-      .writeAsString(stringProperties.content); //Write the content into a file
-
-  String decryptedContent;
   try {
-    decryptedContent = crypt.decryptTextFromFileSync(encryptedFilePath);
+    var decrypted =
+        Encryptor.decrypt(stringProperties.password, stringProperties.content);
+    return decrypted;
   } catch (e) {
-    return Future.error('An error occurred');
+    return Future.error(e);
   }
 
-  File(encryptedFilePath).deleteSync(); //Delete the text file
-
-  return decryptedContent;
 }
 
 getFileDestinationForDecrypt(String filePath) {

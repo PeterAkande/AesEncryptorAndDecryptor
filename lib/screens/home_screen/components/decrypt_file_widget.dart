@@ -1,11 +1,14 @@
 import 'package:aes_encryptor_app/screens/home_screen/components/password_text_view.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:open_file/open_file.dart';
 import 'package:path/path.dart' as p;
 import 'package:provider/provider.dart';
+import 'package:share/share.dart';
 
 import '../../../app_state/aes_encryptor_state.dart';
 import '../../../utils/get_button_colors.dart';
+import '../../../utils/size_config.dart';
 import 'encrypt_button_.dart';
 import 'options_for_encrypted_or_decrypted_file.dart';
 
@@ -60,14 +63,17 @@ class DecryptFileWidget extends StatelessWidget {
                         height: 35,
                         child: Image.asset('assets/doc.png'),
                       ),
-                      Text(
-                          p.basename(context
-                              .read<AesEncryptorState>()
-                              .selectedFilePath as String),
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline2
-                              ?.copyWith(fontSize: 20))
+                      SizedBox(
+                        width: getProportionateScreenWidth(285),
+                        child: Text(
+                            p.basename(context
+                                .read<AesEncryptorState>()
+                                .selectedFilePath as String),
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline2
+                                ?.copyWith(fontSize: 20)),
+                      )
                     ],
                   ),
           ),
@@ -83,9 +89,9 @@ class DecryptFileWidget extends StatelessWidget {
     if (context.read<AesEncryptorState>().decryptedFilePath == null) {
       //what would be shown if the file is yet to be encrypted
       return Column(
-        children: const [
+        children:  [
           SizedBox(
-            height: 131,
+            height: getProportionateScreenHeight(195),
           ),
           EncryptButton()
         ],
@@ -112,26 +118,44 @@ class DecryptFileWidget extends StatelessWidget {
                     height: 35,
                     child: Image.asset('assets/doc.png'),
                   ),
-                  Text(
-                      p.basename(context
-                          .read<AesEncryptorState>()
-                          .decryptedFilePath as String),
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline2
-                          ?.copyWith(fontSize: 20))
+                  SizedBox(
+                    width: getProportionateScreenWidth(285),
+                    child: Text(
+                        p.basename(context
+                            .read<AesEncryptorState>()
+                            .decryptedFilePath as String),
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline2
+                            ?.copyWith(fontSize: 20)),
+                  )
                 ],
               ),
             ),
           ),
-          const SizedBox(
-            height: 45,
+           SizedBox(
+            height: getProportionateScreenHeight(90),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              OptionsForEncryptedOrDecryptedFile(actionText: 'Open'),
-              OptionsForEncryptedOrDecryptedFile(actionText: 'Share')
+            children:  [
+              OptionsForEncryptedOrDecryptedFile(
+                actionText: 'Open',
+                actionCallback: () {
+                  OpenFile.open(context
+                      .read<AesEncryptorState>()
+                      .decryptedFilePath as String);
+                },
+              ),
+              OptionsForEncryptedOrDecryptedFile(
+                actionText: 'Share',
+                actionCallback: () {
+                  Share.shareFiles([
+                    context.read<AesEncryptorState>().decryptedFilePath
+                    as String
+                  ]);
+                },
+              )
             ],
           )
         ],

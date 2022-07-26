@@ -1,13 +1,10 @@
+import 'package:aes_encryptor_app/utils/delete_files_created.dart';
 import 'package:flutter/cupertino.dart';
 
 enum Options { encryptFile, encryptString, decryptFile, decryptString }
 
 class AesEncryptorState extends ChangeNotifier {
   Options? selectedOption; //This would denote the currently selected option
-  bool decryptFileCompleted = false;
-  bool encryptFileCompleted = false;
-  bool decryptStringCompleted = false;
-  bool encryptStringCompleted = false;
 
   String? selectedFilePath;
   String? encryptedFilePath;
@@ -16,11 +13,19 @@ class AesEncryptorState extends ChangeNotifier {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController textToBeEncryptedOrDecryptedController =
       TextEditingController();
+  final TextEditingController textDecryptedOrEncryptedController =
+      TextEditingController();
+  final FocusNode textToBeEncryptedOrDecryptedFocusNode = FocusNode();
 
   updateSelectedOption(Options option) {
+
     selectedFilePath = null;
     encryptedFilePath = null;
+    passwordController.text = '';
+    textToBeEncryptedOrDecryptedController.text = '';
+    textDecryptedOrEncryptedController.text = '';
     selectedOption = option;
+
     notifyListeners();
   }
 
@@ -38,5 +43,14 @@ class AesEncryptorState extends ChangeNotifier {
   updateDecryptedFilePath(String? path) {
     decryptedFilePath = path;
     notifyListeners();
+  }
+
+  updateTextDecryptedOrEncrypted(String value) {
+    textDecryptedOrEncryptedController.text = value;
+    notifyListeners();
+  }
+
+  removeFocus() {
+    textToBeEncryptedOrDecryptedFocusNode.unfocus();
   }
 }

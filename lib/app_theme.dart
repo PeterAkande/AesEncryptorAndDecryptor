@@ -1,33 +1,35 @@
+import 'package:aes_encryptor_app/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 //Would change all these later.
-class ProductivityTheme {
+class AesEncryptorTheme {
   static TextTheme lightTextTheme = TextTheme(
     bodyText1: GoogleFonts.openSans(
       fontSize: 14.0,
       fontWeight: FontWeight.w700,
-      color: Colors.black,
+      color: lightModeTextColor,
     ),
     headline1: GoogleFonts.openSans(
       fontSize: 29.0,
       fontWeight: FontWeight.bold,
-      color: Colors.black,
+      color: lightModeTextColor,
     ),
     headline2: GoogleFonts.openSans(
       fontSize: 21.0,
       fontWeight: FontWeight.w700,
-      color: Colors.black,
+      color: lightModeTextColor,
     ),
+    //headline 3 would be used for the selected button colors
     headline3: GoogleFonts.openSans(
-      fontSize: 16.0,
-      fontWeight: FontWeight.w600,
-      color: Colors.black,
+      fontSize: 21.0,
+      fontWeight: FontWeight.w700,
+      color: darkModeTextColor,
     ),
     headline6: GoogleFonts.openSans(
       fontSize: 20.0,
       fontWeight: FontWeight.w600,
-      color: Colors.black,
+      color: lightModeTextColor,
     ),
   );
 
@@ -35,33 +37,34 @@ class ProductivityTheme {
     bodyText1: GoogleFonts.openSans(
       fontSize: 14.0,
       fontWeight: FontWeight.w700,
-      color: Colors.white,
+      color: darkModeTextColor,
     ),
     headline1: GoogleFonts.openSans(
       fontSize: 29.0,
       fontWeight: FontWeight.bold,
-      color: Colors.black,
+      color: darkModeTextColor,
     ),
     headline2: GoogleFonts.openSans(
       fontSize: 21.0,
       fontWeight: FontWeight.w700,
-      color: Colors.white,
+      color: darkModeTextColor,
     ),
+    //Selected color stuffs
     headline3: GoogleFonts.openSans(
-      fontSize: 16.0,
+      fontSize: 21.0,
       fontWeight: FontWeight.w600,
-      color: Colors.white,
+      color: lightModeTextColor,
     ),
     headline6: GoogleFonts.openSans(
       fontSize: 20.0,
       fontWeight: FontWeight.w600,
-      color: Colors.white,
+      color: darkModeTextColor,
     ),
   );
 
   static ThemeData light() {
     return ThemeData(
-      primaryColor: const Color(0xFFF2E9E4),
+      primaryColor: const Color(0xFFf5efec),
       brightness: Brightness.light,
       checkboxTheme: CheckboxThemeData(
         fillColor: MaterialStateColor.resolveWith((states) {
@@ -71,6 +74,7 @@ class ProductivityTheme {
       appBarTheme: const AppBarTheme(
         //foregroundColor: Colors.white,
         backgroundColor: Colors.white,
+
         iconTheme: IconThemeData(color: Colors.black),
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
@@ -88,7 +92,7 @@ class ProductivityTheme {
 
   static ThemeData dark() {
     return ThemeData(
-      primaryColor: const Color(0x004a4e69),
+      primaryColor: const Color(0xFF22223B),
       brightness: Brightness.dark,
       appBarTheme: AppBarTheme(
         foregroundColor: Colors.white,

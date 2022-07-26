@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 
 import '../../../app_state/aes_encryptor_state.dart';
 import '../../../constants/app_colors.dart';
+import '../../../utils/size_config.dart';
 import 'encrypt_button_.dart';
 
 class DecryptStringWidget extends StatefulWidget {
@@ -39,6 +40,8 @@ class _DecryptStringWidgetState extends State<DecryptStringWidget> {
             children: [
               Expanded(
                 child: TextField(
+                  focusNode: context
+                      .read<AesEncryptorState>().textToBeEncryptedOrDecryptedFocusNode,
                   maxLines: null,
                   maxLength: null,
                   // autofocus: true,
@@ -83,11 +86,11 @@ class _DecryptStringWidgetState extends State<DecryptStringWidget> {
         .isEmpty) {
       //if the
       return Column(
-        children: const [
+        children:  [
           SizedBox(
-            height: 120,
+            height: getProportionateScreenHeight(160),
           ),
-          EncryptButton(),
+          const EncryptButton(),
         ],
       );
     } else {
@@ -101,7 +104,7 @@ class _DecryptStringWidgetState extends State<DecryptStringWidget> {
             children: [
               Expanded(
                 child: Container(
-                  height: 180,
+                  height: getProportionateScreenHeight(200),
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10)),

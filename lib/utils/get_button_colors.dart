@@ -24,7 +24,7 @@ Color getButtonSelectedColor(BuildContext context) {
   if (darkMode) {
     return darkModeButtonSelected;
   } else {
-    print('omo');
+
     return lightModeButtonSelected;
   }
 }

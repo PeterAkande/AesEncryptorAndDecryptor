@@ -9,7 +9,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
-import '../../../utils/get_button_colors.dart';
 
 class EncryptStringWidget extends StatefulWidget {
   const EncryptStringWidget({Key? key}) : super(key: key);

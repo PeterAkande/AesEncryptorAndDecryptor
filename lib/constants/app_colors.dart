@@ -9,5 +9,5 @@ const lightModeTextColor = Color(0xFF22223B);
 //DarkMode
 const darkModeStatusBarOverlay = Color(0xFFC9ADA7);
 const darkModeButtonSelected = Color(0xFFF2E9E4);
-const darkModeButtonColor = Color(0xC9ADA769);
+const darkModeButtonColor = Color(0xFFC9ADA7);
 const darkModeTextColor = Color(0xFFF2E9E4);

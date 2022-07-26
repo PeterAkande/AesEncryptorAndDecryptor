@@ -25,7 +25,7 @@ class OptionsForEncryptedOrDecryptedFile extends StatelessWidget {
         onPressed: actionCallback,
         child: Text(
           actionText,
-          style: Theme.of(context).textTheme.headline3?.copyWith(fontSize: 20),
+          style: getTextSelectedStyle(context)?.copyWith(fontSize: 20),
         ),
       ),
     );

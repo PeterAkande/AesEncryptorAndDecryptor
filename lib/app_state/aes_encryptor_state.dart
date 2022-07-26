@@ -21,6 +21,7 @@ class AesEncryptorState extends ChangeNotifier {
 
     selectedFilePath = null;
     encryptedFilePath = null;
+    decryptedFilePath=null;
     passwordController.text = '';
     textToBeEncryptedOrDecryptedController.text = '';
     textDecryptedOrEncryptedController.text = '';
@@ -32,6 +33,7 @@ class AesEncryptorState extends ChangeNotifier {
   updateSelectedFilePath(String? path) {
     selectedFilePath = path;
     encryptedFilePath = null;
+    decryptedFilePath = null;
     notifyListeners();
   }
 

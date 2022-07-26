@@ -1,4 +1,5 @@
 import 'package:aes_encryptor_app/screens/home_screen/components/password_text_view.dart';
+import 'package:aes_encryptor_app/utils/get_button_colors.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -58,6 +59,9 @@ class _DecryptStringWidgetState extends State<DecryptStringWidget> {
                     filled: true,
 
                     hintText: 'Enter Text to be decrypted',
+                    hintStyle: TextStyle(
+                      color: lightModeTextColor.withOpacity(0.7)
+                    ),
                     // contentPadding: EdgeInsets.only(left: 30, bottom: 9),
                     border: OutlineInputBorder(
                       borderSide: BorderSide.none,
@@ -150,6 +154,7 @@ class _DecryptStringWidgetState extends State<DecryptStringWidget> {
                   icon: SvgPicture.asset(
                     'assets/copy_icon.svg',
                     height: 25,
+                    color: getButtonSelectedColor(context),
                   ),
                   onPressed: () {
                     FlutterClipboard.copy(context

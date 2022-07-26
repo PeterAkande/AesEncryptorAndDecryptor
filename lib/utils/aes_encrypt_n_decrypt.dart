@@ -102,7 +102,7 @@ getFileDestinationForDecrypt(String filePath) {
   String fileExt;
 
   fileExt = p.extension(filePath);
-  if (fileExt == 'aes') {
+  if (fileExt == '.aes') {
     return p.withoutExtension(filePath);
   } else {
     return '$filePath.decrypted';

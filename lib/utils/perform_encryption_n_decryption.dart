@@ -33,7 +33,7 @@ performEncryptionNDecryptionProcess(BuildContext context) async {
           content: context
               .read<AesEncryptorState>()
               .textToBeEncryptedOrDecryptedController
-              .text,
+              .text.trim(),
         )).then((value) {
       context.read<AesEncryptorState>().updateTextDecryptedOrEncrypted(value);
 
@@ -57,7 +57,7 @@ performEncryptionNDecryptionProcess(BuildContext context) async {
             password: context
                 .read<AesEncryptorState>()
                 .passwordController
-                .text))
+                .text.trim()))
         .then((value) {
       context.read<AesEncryptorState>().updateEncryptedFilePath(value.path);
       Navigator.of(context).pop();
@@ -80,7 +80,7 @@ performEncryptionNDecryptionProcess(BuildContext context) async {
             password: context
                 .read<AesEncryptorState>()
                 .passwordController
-                .text))
+                .text.trim()))
         .then((value) {
       context.read<AesEncryptorState>().updateDecryptedFilePath(value.path);
       Navigator.of(context).pop();
@@ -102,7 +102,7 @@ performEncryptionNDecryptionProcess(BuildContext context) async {
             content: context
                 .read<AesEncryptorState>()
                 .textToBeEncryptedOrDecryptedController
-                .text))
+                .text.trim()))
         .then((value) {
       context.read<AesEncryptorState>().updateTextDecryptedOrEncrypted(value);
 

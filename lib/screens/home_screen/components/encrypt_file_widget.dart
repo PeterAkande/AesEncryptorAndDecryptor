@@ -10,6 +10,7 @@ import 'package:path/path.dart' as p;
 import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 
+import '../../../constants/app_colors.dart';
 import '../../../utils/get_button_colors.dart';
 import 'options_for_encrypted_or_decrypted_file.dart';
 
@@ -73,7 +74,7 @@ class EncryptFileWidget extends StatelessWidget {
                           style: Theme.of(context)
                               .textTheme
                               .headline2
-                              ?.copyWith(fontSize: 19),
+                              ?.copyWith(fontSize: 19, color: lightModeTextColor),
                           overflow: TextOverflow.ellipsis,
                         ),
                       )
@@ -130,7 +131,9 @@ class EncryptFileWidget extends StatelessWidget {
                         style: Theme.of(context)
                             .textTheme
                             .headline2
-                            ?.copyWith(fontSize: 20)),
+                            ?.copyWith(fontSize: 19, color: lightModeTextColor),
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   )
                 ],
               ),

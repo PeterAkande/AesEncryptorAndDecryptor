@@ -53,7 +53,7 @@ class OptionsWidget extends StatelessWidget {
                       : Theme.of(context)
                           .textTheme
                           .headline2
-                          ?.copyWith(fontSize: 17),
+                          ?.copyWith(fontSize: 17, color: lightModeTextColor),
                 ),
                 Text(
                   getSecondString(option),
@@ -62,7 +62,7 @@ class OptionsWidget extends StatelessWidget {
                       : Theme.of(context)
                           .textTheme
                           .headline2
-                          ?.copyWith(fontSize: 17),
+                          ?.copyWith(fontSize: 17, color: lightModeTextColor),
                 )
               ],
             ),

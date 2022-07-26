@@ -9,6 +9,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
+import '../../../utils/get_button_colors.dart';
 
 class EncryptStringWidget extends StatefulWidget {
   const EncryptStringWidget({Key? key}) : super(key: key);
@@ -40,6 +41,8 @@ class _EncryptStringWidgetState extends State<EncryptStringWidget> {
                   maxLines: null,
                   maxLength: null,
                   // autofocus: true,
+                  focusNode: context
+                      .read<AesEncryptorState>().textToBeEncryptedOrDecryptedFocusNode,
                   controller: context
                       .read<AesEncryptorState>()
                       .textToBeEncryptedOrDecryptedController,
@@ -50,8 +53,9 @@ class _EncryptStringWidgetState extends State<EncryptStringWidget> {
                   decoration: InputDecoration(
                     fillColor: Colors.white,
                     filled: true,
-
                     hintText: 'Enter Text to be encrypted',
+                    hintStyle:
+                        TextStyle(color: lightModeTextColor.withOpacity(0.7)),
                     border: OutlineInputBorder(
                       borderSide: BorderSide.none,
                       borderRadius: BorderRadius.circular(10),
@@ -79,7 +83,7 @@ class _EncryptStringWidgetState extends State<EncryptStringWidget> {
         .isEmpty) {
       //if the
       return Column(
-        children:  [
+        children: [
           SizedBox(
             height: getProportionateScreenHeight(160),
           ),
@@ -142,6 +146,7 @@ class _EncryptStringWidgetState extends State<EncryptStringWidget> {
                   icon: SvgPicture.asset(
                     'assets/copy_icon.svg',
                     height: 25,
+                    color: getButtonSelectedColor(context),
                   ),
                   onPressed: () {
                     FlutterClipboard.copy(context

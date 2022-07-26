@@ -45,6 +45,7 @@ class _PasswordTextViewState extends State<PasswordTextView> {
           color: lightModeTextColor,
         ),
         hintText: 'Enter Password',
+        hintStyle: TextStyle(color: lightModeTextColor.withOpacity(0.7)),
         contentPadding: EdgeInsets.only(left: 30, bottom: 9),
         border: OutlineInputBorder(
           borderSide: BorderSide.none,

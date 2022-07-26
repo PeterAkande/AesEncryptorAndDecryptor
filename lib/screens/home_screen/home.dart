@@ -4,6 +4,7 @@ import 'package:aes_encryptor_app/screens/home_screen/components/decrypt_string_
 import 'package:aes_encryptor_app/screens/home_screen/components/encrypt_file_widget.dart';
 import 'package:aes_encryptor_app/screens/home_screen/components/encrypt_string_widget.dart';
 import 'package:aes_encryptor_app/screens/home_screen/components/options_widget.dart';
+import 'package:aes_encryptor_app/utils/size_config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -23,6 +24,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
         const SystemUiOverlayStyle(statusBarColor: lightModeStatusBarOverlay));
+    SizeConfig().init(context);
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
@@ -35,7 +37,7 @@ class _HomeState extends State<Home> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 41, right: 41, top: 43),
+        padding: const EdgeInsets.only(left: 30, right: 30, top: 43),
         child: SingleChildScrollView(
           child: Column(
             children: [

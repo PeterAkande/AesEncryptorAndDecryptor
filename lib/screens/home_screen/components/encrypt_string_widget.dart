@@ -23,10 +23,10 @@ class _EncryptStringWidgetState extends State<EncryptStringWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
-        PasswordTextView(),
+        const PasswordTextView(),
         const SizedBox(
           height: 20,
         ),

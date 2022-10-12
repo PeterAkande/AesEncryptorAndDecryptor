@@ -15,12 +15,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (context) => AesEncryptorState(),
+        create: (context) => AesEncryptorState(), // The handler of the app state, to be provided to all child widgets with Provider
         builder: (context, widget) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            theme: AesEncryptorTheme.light(),
-            darkTheme: AesEncryptorTheme.dark(),
+            theme: AesEncryptorTheme.light(), // Light theme
+            darkTheme: AesEncryptorTheme.dark(), // Dark Theme
             home: const Home(),
           );
         });

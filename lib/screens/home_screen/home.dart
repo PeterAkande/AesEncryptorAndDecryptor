@@ -20,10 +20,38 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  late AesEncryptorState appStateInstance; // The app state instance. Would be needed to dispose the controllers later
+  
+  @override
+  void initState() {
+    super.initState();
+
+    appStateInstance = context.read<AesEncryptorState>();
+  }
+
+  @override
+  void dispose() {
+
+    //Wouldnt cause problems since this is a single page app.. But who knows, anyone might want to improve on it later
+    //Good luck
+    appStateInstance.textDecryptedOrEncryptedController.dispose();
+    appStateInstance.passwordController.dispose();
+    appStateInstance.textToBeEncryptedOrDecryptedController.dispose();
+    appStateInstance.textToBeEncryptedOrDecryptedFocusNode.dispose();
+
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
+
+    //Change the color of the status bar,
     SystemChrome.setSystemUIOverlayStyle(
         const SystemUiOverlayStyle(statusBarColor: lightModeStatusBarOverlay));
+
+    // initialize the needed screen size configurations
     SizeConfig().init(context);
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
@@ -70,8 +98,7 @@ class _HomeState extends State<Home> {
   }
 
   Widget getOptionWidgetToShow(BuildContext context) {
-    // if(context.read<AesEncryptorState>().selectedOption =)
-    //
+    //This function gives the 
 
     switch (context.read<AesEncryptorState>().selectedOption) {
       case null:
@@ -87,19 +114,19 @@ class _HomeState extends State<Home> {
           ],
         );
       case Options.decryptString:
-        return DecryptStringWidget();
+        return const DecryptStringWidget();
       case Options.decryptFile:
-        return DecryptFileWidget();
+        return const DecryptFileWidget();
       case Options.encryptString:
-        return EncryptStringWidget();
+        return const EncryptStringWidget();
       case Options.encryptFile:
-        return EncryptFileWidget();
+        return const EncryptFileWidget();
       default:
         return Container(
           color: Colors.white60,
           height: 20,
           width: 50,
-          child: Text('AN error occurred'),
+          child: const Text('An error occurred'),
         );
     }
   }

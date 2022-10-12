@@ -13,18 +13,12 @@ class OptionsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Consumer<AesEncryptorState>(builder: (context, state, child) {
       return SizedBox(
         width: 146,
         height: 85,
-        // decoration: BoxDecoration(
-        //   borderRadius: BorderRadius.circular(10),
-        //
-        //   //If the option is equal to the selected option, then the option widget was chosen
-        //   color: option == state.selectedOption
-        //       ? getButtonSelectedColor(context)
-        //       : getButtonColor(context),
-        // ),
+    
         child: ElevatedButton(
           style: ButtonStyle(
               elevation: MaterialStateProperty.all(0),
@@ -39,7 +33,8 @@ class OptionsWidget extends StatelessWidget {
                 ),
               )),
           onPressed: () async {
-            await deleteFilesCreated(context);
+        
+            await deleteFilesCreated(context); // Delete all files that might have been created when encrypting or decrypting
             state.updateSelectedOption(option);
           },
           child: Center(
@@ -76,6 +71,9 @@ class OptionsWidget extends StatelessWidget {
     //This function would be used to get the firstString that is displayed
     //In the options widget, depending on the particular option.
 
+    //Like for encrypt, The first string would be Encrypt, same goes for derypt.
+    //Trying to make things simple as possible
+
     if (option == Options.decryptFile || option == Options.decryptString) {
       return 'Decrypt';
     } else {
@@ -86,13 +84,13 @@ class OptionsWidget extends StatelessWidget {
   }
 
   String getSecondString(Options option) {
-    //This function would be used to get the second that is displayed
+    //This function would be used to get the second String that is displayed
     //In the options widget, depending on the particular option.
 
     if (option == Options.decryptFile || option == Options.encryptFile) {
       return 'file';
     } else {
-      //This is an file option then
+      //This is an string option then
 
       return 'string';
     }
